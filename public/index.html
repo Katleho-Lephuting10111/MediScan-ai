@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediScan AI - Smart Symptom Checker</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Theme Toggle -->
+        <div class="theme-toggle-container">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </button>
+        </div>
+
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <h1>MediScan AI</h1>
+                <p class="tagline">AI-Powered Symptom Analysis & Medical Triage Assistant</p>
+            </div>
+        </header>
+
+        <main>
+            <!-- Input Section -->
+            <section id="inputSection">
+                <div class="card">
+                    <h2>Describe Your Symptoms</h2>
+                    <form id="symptomForm">
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" min="1" max="120" placeholder="Enter your age" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="symptoms">Symptoms</label>
+                            <textarea id="symptoms" placeholder="Describe your symptoms in detail (e.g., fever, headache, cough, duration...)" 
+                                      rows="4" required maxlength="1000"></textarea>
+                            <div class="char-count">
+                                <span id="charCount">0</span>/1000 characters
+                            </div>
+                        </div>
+
+                        <button type="submit" id="analyzeBtn" class="btn-primary">
+                            Analyze Symptoms
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="loadingSection" style="display: none;">
+                <div class="card loading-card">
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                    </div>
+                    <h3>Analyzing Your Symptoms...</h3>
+                    <p>Our AI is processing your information to provide personalized insights.</p>
+                </div>
+            </section>
+
+            <section id="resultsSection" style="display: none;">
+                <div class="card">
+                    <h2>Analysis Results</h2>
+                    <div id="resultsContent">
+                        <!-- Results will be populated here -->
+                    </div>
+                    <button id="newAnalysisBtn" class="btn-secondary">
+                        New Analysis
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p><strong>Disclaimer:</strong> This tool is for informational purposes only and is not a substitute for professional medical advice. Always consult with a healthcare provider for medical concerns.</p>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
