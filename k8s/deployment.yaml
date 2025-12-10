@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mediscan-deployment
+  namespace: mediscan
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mediscan
+  template:
+    metadata:
+      labels:
+        app: mediscan
+    spec:
+      containers:
+      - name: mediscan-container
+        image: katdocker99/mediscan-ai:latest
+        ports:
+        - containerPort: 3000

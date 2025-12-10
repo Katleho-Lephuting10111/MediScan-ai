@@ -1,0 +1,41 @@
+name: MediScan AI Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build Docker image
+        run: docker build -t mediscan-ci .
+        
+      - name: Test Build
+        run: docker run mediscan-ci echo "✅ Build successful!"
+        
+  notify:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Success!
+        run: |
+          echo "🚀 Pipeline completed successfully!"
+          echo "To update your Kubernetes deployment, run:"
+          echo "kubectl rollout restart deployment/mediscan-deployment -n mediscan"
